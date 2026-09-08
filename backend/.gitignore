@@ -1,0 +1,8 @@
+# generated at boot by GraphQLModule, never hand-edited
+src/schema.gql
+
+# local sqlite artifacts, not used with postgres but kept as a safety net
+prisma/dev.db
+prisma/dev.db-journal
+
+.env

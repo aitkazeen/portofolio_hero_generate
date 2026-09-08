@@ -1,0 +1,78 @@
+.column {
+  display: grid;
+  gap: var(--space-8);
+}
+
+.buildQueue {
+  padding: var(--space-8);
+  background: linear-gradient(180deg, var(--sunken-panel-1), var(--sunken-panel-2));
+  border: 2px solid var(--hard-border);
+  box-shadow: inset 0 0 0 1px var(--panel-hairline);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-tertiary-3);
+}
+
+.rows {
+  margin-top: var(--space-6);
+  display: grid;
+  gap: var(--space-5);
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.icon {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  border: 1px solid var(--panel-hairline);
+  background-color: var(--icon-slot-1);
+  background-image: repeating-linear-gradient(135deg, rgba(150, 190, 255, 0.13) 0 5px, rgba(0, 0, 0, 0.22) 5px 10px);
+}
+
+.rowBody {
+  flex: 1;
+  min-width: 0;
+}
+
+.rowLabel {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.rowBar {
+  margin-top: var(--space-1);
+}
+
+.standingOrders {
+  padding: var(--space-8);
+  background: linear-gradient(180deg, #1b2230, #0b0e14);
+  border: 2px solid var(--hard-border);
+  box-shadow: inset 0 0 0 1px var(--dim-hairline);
+}
+
+.ordersLabel {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--icon-caption);
+}
+
+.ordersBody {
+  margin-top: var(--space-4);
+  font-size: 16px;
+  line-height: 1.55;
+  color: var(--blue-text);
+}

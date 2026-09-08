@@ -1,0 +1,46 @@
+.track {
+  position: relative;
+  border: 1px solid var(--hard-border);
+  background: var(--bar-track);
+  overflow: hidden;
+}
+
+.track--outlined {
+  box-shadow: inset 0 0 0 1px var(--bar-inset);
+}
+
+.track--idle {
+  box-shadow: inset 0 0 0 1px var(--idle-border-1);
+}
+
+.fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  height: 100%;
+}
+
+.fill--hp {
+  background: linear-gradient(180deg, var(--hp-fill-start), var(--hp-fill-end));
+}
+
+.fill--mana {
+  background: linear-gradient(180deg, var(--mana-fill-start), var(--mana-fill-end));
+}
+
+.fill--xp {
+  background: linear-gradient(180deg, var(--xp-fill-start), var(--xp-fill-end));
+}
+
+.fill--stat {
+  background: linear-gradient(180deg, var(--stat-fill-start), var(--stat-fill-end));
+  box-shadow: 0 0 10px rgba(60, 130, 240, 0.5);
+}
+
+.label {
+  position: relative;
+  display: grid;
+  place-items: center;
+  height: 100%;
+  font-family: var(--font-mono);
+  text-shadow: 0 1px 2px #000;
+}

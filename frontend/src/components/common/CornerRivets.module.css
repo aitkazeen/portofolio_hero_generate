@@ -1,0 +1,12 @@
+.rivet {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.rivet--bronze {
+  background: radial-gradient(circle at 35% 30%, #f0ead8, #5c5c58);
+}
+
+.rivet--gold {
+  background: radial-gradient(circle at 35% 30%, #fff0c0, var(--deep-bronze));
+}

@@ -1,0 +1,75 @@
+.bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-6);
+  flex-wrap: wrap;
+  min-height: 48px;
+  padding: 28px var(--space-frame-gutter) var(--space-3);
+  background: linear-gradient(180deg, var(--chrome-1) 0%, var(--chrome-2) 40%, var(--chrome-3) 100%);
+  border-bottom: 2px solid var(--hard-border);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), inset 0 -1px 0 var(--dim-hairline), inset 0 -14px 22px rgba(0, 0, 0, 0.55);
+}
+
+.resources {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4) 20px;
+}
+
+.resource {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  white-space: nowrap;
+}
+
+.diamond {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--hard-border);
+  background: radial-gradient(circle at 35% 28%, #ffe9a8, var(--frame-gold) 55%, var(--deep-bronze));
+  box-shadow: inset 0 0 0 1px rgba(255, 245, 210, 0.5), 0 0 8px rgba(210, 160, 60, 0.35);
+  transform: rotate(45deg);
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-tertiary-2);
+  text-transform: uppercase;
+}
+
+.value {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--gold);
+}
+
+.terminal {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+  flex: none;
+}
+
+.caption {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--text-tertiary-3);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.statusDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--status-dot);
+  box-shadow: 0 0 10px #2f7fe0;
+  animation: emberPulse 2.4s ease-in-out infinite;
+}

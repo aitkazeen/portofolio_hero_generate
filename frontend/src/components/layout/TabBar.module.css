@@ -1,0 +1,74 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  padding: var(--space-5) var(--space-frame-gutter);
+  background: linear-gradient(180deg, var(--sunken-panel-1), #12151a);
+  border-bottom: 2px solid var(--hard-border);
+  box-shadow: inset 0 -1px 0 var(--bar-inset), inset 0 -12px 20px rgba(0, 0, 0, 0.5);
+}
+
+.tabWrap {
+  position: relative;
+  flex: 1 1 160px;
+  min-width: 0;
+}
+
+.tab {
+  padding: var(--space-5) var(--space-7);
+  text-align: center;
+  cursor: pointer;
+  border-width: 2px;
+  border-style: solid;
+  background: none;
+  width: 100%;
+  font: inherit;
+}
+
+.tab--active {
+  border-color: var(--gold);
+  background: linear-gradient(180deg, var(--blue-active-1) 0%, var(--blue-active-2) 45%, var(--blue-active-3) 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45), var(--glow-gold-md);
+}
+
+.tab--idle {
+  border-color: var(--idle-border-2);
+  background: linear-gradient(180deg, #1d2634 0%, #121722 60%, #0b0e15 100%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.tab--idle:hover {
+  border-color: var(--frame-gold);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), var(--glow-gold-sm);
+}
+
+.label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.label--active {
+  color: var(--gold-on-blue);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+}
+
+.label--idle {
+  color: var(--text-tertiary-1);
+}
+
+.hotkey {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--gold);
+  text-shadow: 0 1px 2px #000;
+}

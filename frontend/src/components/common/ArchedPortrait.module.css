@@ -1,0 +1,21 @@
+.frame {
+  flex: none;
+  border-style: solid;
+  border-color: var(--frame-gold);
+  background: linear-gradient(180deg, var(--frame-light-1), var(--deep-bronze));
+}
+
+.slot {
+  aspect-ratio: 3 / 4;
+  background-color: var(--icon-slot-3);
+  background-image: repeating-linear-gradient(135deg, rgba(120, 160, 230, 0.12) 0 8px, rgba(0, 0, 0, 0.2) 8px 16px);
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.caption {
+  font-family: var(--font-mono);
+  color: var(--icon-caption);
+  text-transform: uppercase;
+}

@@ -1,0 +1,6 @@
+.region {
+  position: relative;
+  z-index: 7;
+  padding: var(--space-12) var(--space-frame-gutter) var(--space-5);
+  min-height: 520px;
+}
