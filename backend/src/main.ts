@@ -1,11 +1,17 @@
 import "reflect-metadata";
 import { NestFactory } from "@nestjs/core";
 import { ValidationPipe } from "@nestjs/common";
+import helmet from "helmet";
 import { AppModule } from "./app.module";
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  app.enableCors({ origin: process.env.CORS_ORIGIN?.split(",") ?? true });
+  app.use(helmet());
+  app.enableCors({
+    origin:
+      process.env.CORS_ORIGIN?.split(",") ??
+      (process.env.NODE_ENV === "production" ? false : true),
+  });
   app.useGlobalPipes(
     new ValidationPipe({
       whitelist: true,

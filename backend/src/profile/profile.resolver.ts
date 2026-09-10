@@ -1,4 +1,6 @@
+import { UseGuards } from "@nestjs/common";
 import { Args, Mutation, Query, Resolver } from "@nestjs/graphql";
+import { AdminGuard } from "../common/guards/admin.guard";
 import { Profile } from "./models/profile.model";
 import { ProfileService } from "./profile.service";
 import { UpdateProfileInput } from "./dto/update-profile.input";
@@ -13,6 +15,7 @@ export class ProfileResolver {
   }
 
   @Mutation(() => Profile)
+  @UseGuards(AdminGuard)
   updateProfile(@Args("input") input: UpdateProfileInput) {
     return this.profileService.update(input);
   }

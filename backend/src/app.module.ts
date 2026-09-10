@@ -4,6 +4,7 @@ import { ConfigModule, ConfigService } from "@nestjs/config";
 import { ApolloDriver, ApolloDriverConfig } from "@nestjs/apollo";
 import { GraphQLModule } from "@nestjs/graphql";
 import { MongooseModule } from "@nestjs/mongoose";
+import { ThrottlerModule } from "@nestjs/throttler";
 import { ProfileModule } from "./profile/profile.module";
 import { SkillsModule } from "./skills/skills.module";
 import { ProjectsModule } from "./projects/projects.module";
@@ -14,6 +15,7 @@ import { StorageModule } from "./storage/storage.module";
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
+    ThrottlerModule.forRoot([{ ttl: 60_000, limit: 3 }]),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
@@ -26,7 +28,11 @@ import { StorageModule } from "./storage/storage.module";
       autoSchemaFile: join(process.cwd(), "src/schema.gql"),
       sortSchema: true,
       playground: false,
-      introspection: true,
+      introspection: process.env.NODE_ENV !== "production",
+      context: ({ req, res }: { req: unknown; res: unknown }) => ({
+        req,
+        res,
+      }),
     }),
     ProfileModule,
     SkillsModule,
