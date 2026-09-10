@@ -255,7 +255,7 @@ function mapContactChannels(profile: ProfileDto): ContactChannel[] {
     channels.push({
       label: "Résumé",
       value: "Download PDF",
-      kind: "link",
+      kind: "download",
       href: profile.resumeUrl,
     });
   }

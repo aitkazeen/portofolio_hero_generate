@@ -57,7 +57,7 @@ export interface HeroFact {
   value: string;
 }
 
-export type ContactChannelKind = "email" | "link" | "phone";
+export type ContactChannelKind = "email" | "link" | "phone" | "download";
 
 export interface ContactChannel {
   label: string;

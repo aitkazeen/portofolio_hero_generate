@@ -1,4 +1,7 @@
 .bar {
+  position: sticky;
+  bottom: 0;
+  z-index: 9;
   display: grid;
   grid-template-columns: clamp(120px, 14%, 180px) minmax(0, 1fr) clamp(240px, 32%, 330px);
   gap: var(--space-7);

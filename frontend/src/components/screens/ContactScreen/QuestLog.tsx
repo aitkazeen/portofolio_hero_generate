@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { CornerRivets } from "../../common/CornerRivets";
-import type { ContactContent } from "../../../types/content";
+import type { ContactChannel, ContactContent } from "../../../types/content";
+import { ContactModal } from "./ContactModal";
 import styles from "./QuestLog.module.css";
 
 interface QuestLogProps {
@@ -7,6 +9,8 @@ interface QuestLogProps {
 }
 
 export function QuestLog({ contact }: QuestLogProps) {
+  const [openChannel, setOpenChannel] = useState<ContactChannel | null>(null);
+
   return (
     <div className={styles.scroll}>
       <CornerRivets size={9} inset={8} variant="gold" />
@@ -15,22 +19,34 @@ export function QuestLog({ contact }: QuestLogProps) {
       <div className={styles.body}>{contact.body}</div>
       <div className={styles.channels}>
         {contact.channels.map((channel) => (
-          <a
+          <div
             className={styles.channel}
             key={channel.label}
-            href={channel.href}
-            target={channel.kind === "link" ? "_blank" : undefined}
-            rel={channel.kind === "link" ? "noreferrer" : undefined}
+            role="button"
+            tabIndex={0}
+            onClick={() => setOpenChannel(channel)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                setOpenChannel(channel);
+              }
+            }}
           >
             <div className={styles.channelIcon} />
             <div className={styles.channelText}>
               <div className={styles.channelLabel}>{channel.label}</div>
               <div className={styles.channelValue}>{channel.value}</div>
             </div>
-          </a>
+          </div>
         ))}
       </div>
       <div className={styles.flavor}>{contact.flavorLine}</div>
+      {openChannel && (
+        <ContactModal
+          channel={openChannel}
+          onClose={() => setOpenChannel(null)}
+        />
+      )}
     </div>
   );
 }
