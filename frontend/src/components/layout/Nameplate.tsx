@@ -1,5 +1,6 @@
 import { ArchedPortrait } from "../common/ArchedPortrait";
 import { StatBar } from "../common/StatBar";
+import footieAvatar from "../../assets/avatar/footie.jpg";
 import styles from "./Nameplate.module.css";
 
 interface NameplateProps {
@@ -29,6 +30,7 @@ export function Nameplate({
         innerGlowBlur={20}
         captionSize={8}
         caption="AVATAR"
+        imageUrl={footieAvatar}
       />
       <div className={styles.info}>
         <div className={styles.nameRow}>

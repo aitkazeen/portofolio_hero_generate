@@ -1,6 +1,7 @@
 import { ArchedPortrait } from "../../common/ArchedPortrait";
 import { CornerRivets } from "../../common/CornerRivets";
 import { StatBar } from "../../common/StatBar";
+import footieAvatar from "../../../assets/avatar/footie.jpg";
 import type { SkillsContent } from "../../../types/content";
 import styles from "./AttributePanel.module.css";
 
@@ -33,6 +34,7 @@ export function AttributePanel({
                 innerRadius="50% 50% 2px 2px / 30% 30% 2px 2px"
                 captionSize={9}
                 caption="PORTRAIT"
+                imageUrl={footieAvatar}
               />
             </div>
             <div className={styles.identity}>

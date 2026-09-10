@@ -59,6 +59,8 @@
 .icon {
   flex: 1;
   width: 100%;
+  display: grid;
+  place-items: center;
   border: 1px solid var(--panel-hairline);
   background-color: var(--icon-slot-2);
   background-image: repeating-linear-gradient(135deg, rgba(150, 190, 255, 0.14) 0 5px, rgba(0, 0, 0, 0.25) 5px 10px);
@@ -67,6 +69,17 @@
 .icon--active {
   border-color: var(--gold);
   background-image: repeating-linear-gradient(135deg, rgba(180, 210, 255, 0.2) 0 5px, rgba(0, 0, 0, 0.25) 5px 10px);
+}
+
+.iconGlyph {
+  width: 62%;
+  height: 62%;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-size: contain;
+  mask-size: contain;
 }
 
 .label {

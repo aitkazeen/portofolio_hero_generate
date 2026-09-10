@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CornerRivets } from "../../common/CornerRivets";
+import { resolveContactIcon } from "../../../content/contactIcons";
 import type { ContactChannel, ContactContent } from "../../../types/content";
 import { ContactModal } from "./ContactModal";
 import styles from "./QuestLog.module.css";
@@ -18,27 +19,32 @@ export function QuestLog({ contact }: QuestLogProps) {
       <div className={styles.title}>{contact.title}</div>
       <div className={styles.body}>{contact.body}</div>
       <div className={styles.channels}>
-        {contact.channels.map((channel) => (
-          <div
-            className={styles.channel}
-            key={channel.label}
-            role="button"
-            tabIndex={0}
-            onClick={() => setOpenChannel(channel)}
-            onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") {
-                e.preventDefault();
-                setOpenChannel(channel);
-              }
-            }}
-          >
-            <div className={styles.channelIcon} />
-            <div className={styles.channelText}>
-              <div className={styles.channelLabel}>{channel.label}</div>
-              <div className={styles.channelValue}>{channel.value}</div>
+        {contact.channels.map((channel) => {
+          const Icon = resolveContactIcon(channel);
+          return (
+            <div
+              className={styles.channel}
+              key={channel.label}
+              role="button"
+              tabIndex={0}
+              onClick={() => setOpenChannel(channel)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setOpenChannel(channel);
+                }
+              }}
+            >
+              <div className={styles.channelIcon}>
+                <Icon size={18} />
+              </div>
+              <div className={styles.channelText}>
+                <div className={styles.channelLabel}>{channel.label}</div>
+                <div className={styles.channelValue}>{channel.value}</div>
+              </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
       <div className={styles.flavor}>{contact.flavorLine}</div>
       {openChannel && (

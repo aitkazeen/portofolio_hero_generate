@@ -1,10 +1,37 @@
+import barbuteIcon from "../../assets/hud/barbute.svg";
+import crossedAxesIcon from "../../assets/hud/crossed-axes.svg";
+import envelopeIcon from "../../assets/hud/envelope.svg";
 import type { Screen } from "../../types/content";
 import styles from "./CommandCard.module.css";
 
-const SLOTS: { id: Screen; label: string; hotkey: string }[] = [
-  { id: "hero", label: "HERO", hotkey: "Z" },
-  { id: "skills", label: "SKILLS", hotkey: "X" },
-  { id: "contact", label: "CONTACT", hotkey: "C" },
+const SLOTS: {
+  id: Screen;
+  label: string;
+  hotkey: string;
+  icon: string;
+  color: string;
+}[] = [
+  {
+    id: "hero",
+    label: "HERO",
+    hotkey: "Z",
+    icon: barbuteIcon,
+    color: "var(--faction-alliance)",
+  },
+  {
+    id: "skills",
+    label: "SKILLS",
+    hotkey: "X",
+    icon: crossedAxesIcon,
+    color: "var(--faction-horde)",
+  },
+  {
+    id: "contact",
+    label: "CONTACT",
+    hotkey: "C",
+    icon: envelopeIcon,
+    color: "var(--faction-nightelf)",
+  },
 ];
 
 interface CommandCardProps {
@@ -30,7 +57,16 @@ export function CommandCard({ activeScreen, onSelect }: CommandCardProps) {
               <div className={styles.hotkey}>{slot.hotkey}</div>
               <div
                 className={`${styles.icon} ${isActive ? styles["icon--active"] : ""}`}
-              />
+              >
+                <span
+                  className={styles.iconGlyph}
+                  style={{
+                    WebkitMaskImage: `url(${slot.icon})`,
+                    maskImage: `url(${slot.icon})`,
+                    backgroundColor: slot.color,
+                  }}
+                />
+              </div>
               <div
                 className={`${styles.label} ${isActive ? styles["label--active"] : styles["label--idle"]}`}
               >

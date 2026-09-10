@@ -118,6 +118,11 @@ async function main() {
         url: "https://linkedin.com/in/ilyas-aitkazin",
         profileId,
       },
+      {
+        label: "Telegram",
+        url: "https://t.me/qoqosyk",
+        profileId,
+      },
     ]),
     SkillModel.insertMany(
       [

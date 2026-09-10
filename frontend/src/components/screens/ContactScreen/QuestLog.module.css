@@ -60,9 +60,12 @@
   width: 38px;
   height: 38px;
   flex: none;
+  display: grid;
+  place-items: center;
   border: 1px solid var(--ink-muted);
   background-color: var(--parchment-icon);
   background-image: repeating-linear-gradient(135deg, rgba(0, 0, 0, 0.12) 0 5px, rgba(255, 255, 255, 0.2) 5px 10px);
+  color: var(--ink-heading);
 }
 
 .channelText {

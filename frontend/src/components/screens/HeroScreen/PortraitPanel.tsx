@@ -1,6 +1,7 @@
 import { ArchedPortrait } from "../../common/ArchedPortrait";
 import { CornerRivets } from "../../common/CornerRivets";
 import { StatBar } from "../../common/StatBar";
+import footieAvatar from "../../../assets/avatar/footie.jpg";
 import type { HeroContent } from "../../../types/content";
 import styles from "./PortraitPanel.module.css";
 
@@ -31,6 +32,7 @@ export function PortraitPanel({ hero }: PortraitPanelProps) {
         innerGlowBlur={40}
         glow
         captionSize={11}
+        imageUrl={footieAvatar}
         caption={
           <>
             hero portrait
