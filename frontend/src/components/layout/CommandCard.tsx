@@ -2,8 +2,8 @@ import type { Screen } from "../../types/content";
 import styles from "./CommandCard.module.css";
 
 const SLOTS: { id: Screen; label: string; hotkey: string }[] = [
-  { id: "hero", label: "HERO", hotkey: "H" },
-  { id: "skills", label: "SKILLS", hotkey: "S" },
+  { id: "hero", label: "HERO", hotkey: "Z" },
+  { id: "skills", label: "SKILLS", hotkey: "X" },
   { id: "contact", label: "CONTACT", hotkey: "C" },
 ];
 

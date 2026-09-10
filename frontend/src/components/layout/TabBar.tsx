@@ -2,8 +2,8 @@ import type { Screen } from "../../types/content";
 import styles from "./TabBar.module.css";
 
 const TABS: { id: Screen; label: string; hotkey: string }[] = [
-  { id: "hero", label: "Hero", hotkey: "H" },
-  { id: "skills", label: "Skills & Stack", hotkey: "S" },
+  { id: "hero", label: "Hero", hotkey: "Z" },
+  { id: "skills", label: "Skills & Stack", hotkey: "X" },
   { id: "contact", label: "Contact", hotkey: "C" },
 ];
 

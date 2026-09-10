@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import type { Screen } from "../types/content";
 
-const KEY_TO_SCREEN: Record<string, Screen> = {
-  h: "hero",
-  s: "skills",
-  c: "contact",
+const CODE_TO_SCREEN: Record<string, Screen> = {
+  KeyZ: "hero",
+  KeyX: "skills",
+  KeyC: "contact",
 };
 
 function isTypingTarget(target: EventTarget | null): boolean {
@@ -16,12 +16,14 @@ function isTypingTarget(target: EventTarget | null): boolean {
   );
 }
 
-/** Global H / S / C hotkeys to switch screens, disabled while typing. */
+/** Global Z / X / C hotkeys to switch screens, disabled while typing.
+ * Matched on `event.code` (physical key position) rather than `event.key` so the
+ * hotkeys still work under non-Latin keyboard layouts (e.g. Cyrillic). */
 export function useHotkeyNav(onNavigate: (screen: Screen) => void) {
   useEffect(() => {
     const onKeyDown = (event: KeyboardEvent) => {
       if (isTypingTarget(event.target)) return;
-      const screen = KEY_TO_SCREEN[event.key.toLowerCase()];
+      const screen = CODE_TO_SCREEN[event.code];
       if (screen) onNavigate(screen);
     };
     window.addEventListener("keydown", onKeyDown);

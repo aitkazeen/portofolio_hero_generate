@@ -57,7 +57,7 @@ export function App() {
 
   return (
     <HudFrame
-      footerLeft="Mockup for React build — hotkeys H / S / C switch screens"
+      footerLeft="Mockup for React build — hotkeys Z / X / C switch screens"
       footerRight={`Screen ${SCREEN_INDEX[screen]} of 3 — ${screenLabel}`}
     >
       <TopResourceBar resources={content.resources} />
