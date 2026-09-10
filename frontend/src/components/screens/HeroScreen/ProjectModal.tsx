@@ -1,16 +1,16 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { createPortal } from "react-dom";
 import { CornerRivets } from "../../common/CornerRivets";
 import type { LogEntry } from "../../../types/content";
 import styles from "./CampaignEntryModal.module.css";
 
-interface ExperienceModalProps {
+interface ProjectModalProps {
   entry: LogEntry;
   onClose: () => void;
 }
 
-/** Full-detail popup for a Campaign Log — Experience row, showing the CV entry in full. */
-export function ExperienceModal({ entry, onClose }: ExperienceModalProps) {
+/** Confirmation popup for a Campaign Log — Projects row: shows the link before opening it. */
+export function ProjectModal({ entry, onClose }: ProjectModalProps) {
   useEffect(() => {
     const onKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
@@ -18,15 +18,6 @@ export function ExperienceModal({ entry, onClose }: ExperienceModalProps) {
     window.addEventListener("keydown", onKeyDown);
     return () => window.removeEventListener("keydown", onKeyDown);
   }, [onClose]);
-
-  const [details, setDetails] = useState("");
-  useEffect(() => {
-    const sentences = (entry.detail ?? entry.result)
-      .split(".")
-      .map((s) => s.trim())
-      .filter(Boolean);
-    setDetails(sentences.map((s, i) => `${i + 1}) ${s}.`).join("\n"));
-  }, [entry]);
 
   return createPortal(
     <div className={styles.backdrop} onClick={onClose}>
@@ -38,24 +29,27 @@ export function ExperienceModal({ entry, onClose }: ExperienceModalProps) {
         onClick={(e) => e.stopPropagation()}
       >
         <CornerRivets size={9} inset={8} variant="gold" />
-        <button
-          type="button"
-          className={styles.close}
-          onClick={onClose}
-          aria-label="Close"
-        >
-          ✕
-        </button>
         <div className={styles.numeral}>{entry.numeral}</div>
         <div className={styles.titleRow}>
           <div className={styles.jobTitle}>{entry.title}</div>
           <div className={styles.period}>{entry.period}</div>
         </div>
-        <div className={styles.stack}>
-          {entry.stack}
-          {entry.scope && ` · ${entry.scope}`}
+        <div className={styles.stack}>{entry.stack}</div>
+        {entry.href && <div className={styles.url}>{entry.href}</div>}
+        <div className={styles.actions}>
+          <a
+            className={`${styles.action} ${styles["action--primary"]}`}
+            href={entry.href}
+            target="_blank"
+            rel="noreferrer"
+            onClick={onClose}
+          >
+            Open
+          </a>
+          <button type="button" className={styles.action} onClick={onClose}>
+            Close
+          </button>
         </div>
-        <div className={styles.detail}>{details}</div>
       </div>
     </div>,
     document.body,

@@ -2,6 +2,7 @@ import { useState, type KeyboardEvent } from "react";
 import { StatBar } from "../../common/StatBar";
 import type { LogEntry } from "../../../types/content";
 import { ExperienceModal } from "./ExperienceModal";
+import { ProjectModal } from "./ProjectModal";
 import styles from "./CampaignLog.module.css";
 
 type LogView = "experience" | "projects";
@@ -30,6 +31,7 @@ interface CampaignLogProps {
 export function CampaignLog({ experience, projects }: CampaignLogProps) {
   const [view, setView] = useState<LogView>("experience");
   const [openEntry, setOpenEntry] = useState<LogEntry | null>(null);
+  const [openProject, setOpenProject] = useState<LogEntry | null>(null);
   const entries = view === "experience" ? experience : projects;
   const meta = VIEW_META[view];
 
@@ -53,21 +55,20 @@ export function CampaignLog({ experience, projects }: CampaignLogProps) {
         )}
         {entries.map((row) => {
           const isExperience = view === "experience";
-          const Entry = row.href ? "a" : "div";
+          const isClickable = isExperience || Boolean(row.href);
+          const openRow = () =>
+            isExperience ? setOpenEntry(row) : setOpenProject(row);
           return (
-            <Entry
+            <div
               className={styles.entry}
               key={row.numeral}
-              {...(row.href
-                ? { href: row.href, target: "_blank", rel: "noreferrer" }
-                : {})}
-              {...(isExperience
+              {...(isClickable
                 ? {
-                    onClick: () => setOpenEntry(row),
+                    onClick: openRow,
                     onKeyDown: (e: KeyboardEvent) => {
                       if (e.key === "Enter" || e.key === " ") {
                         e.preventDefault();
-                        setOpenEntry(row);
+                        openRow();
                       }
                     },
                     role: "button",
@@ -93,12 +94,18 @@ export function CampaignLog({ experience, projects }: CampaignLogProps) {
                 />
                 <div className={styles.scope}>{row.scope}</div>
               </div>
-            </Entry>
+            </div>
           );
         })}
       </div>
       {openEntry && (
         <ExperienceModal entry={openEntry} onClose={() => setOpenEntry(null)} />
+      )}
+      {openProject && (
+        <ProjectModal
+          entry={openProject}
+          onClose={() => setOpenProject(null)}
+        />
       )}
     </div>
   );
