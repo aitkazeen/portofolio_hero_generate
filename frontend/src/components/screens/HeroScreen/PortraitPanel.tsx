@@ -1,8 +1,8 @@
-import { ArchedPortrait } from '../../common/ArchedPortrait';
-import { CornerRivets } from '../../common/CornerRivets';
-import { StatBar } from '../../common/StatBar';
-import type { HeroContent } from '../../../types/content';
-import styles from './PortraitPanel.module.css';
+import { ArchedPortrait } from "../../common/ArchedPortrait";
+import { CornerRivets } from "../../common/CornerRivets";
+import { StatBar } from "../../common/StatBar";
+import type { HeroContent } from "../../../types/content";
+import styles from "./PortraitPanel.module.css";
 
 interface PortraitPanelProps {
   hero: HeroContent;
@@ -36,7 +36,9 @@ export function PortraitPanel({ hero }: PortraitPanelProps) {
             hero portrait
             <br />
             512 × 680
-            <div style={{ marginTop: 6, color: '#5f6d8c' }}>drop avatar here</div>
+            <div style={{ marginTop: 6, color: "#5f6d8c" }}>
+              drop avatar here
+            </div>
           </>
         }
       />
@@ -47,7 +49,7 @@ export function PortraitPanel({ hero }: PortraitPanelProps) {
           variant="hp"
           height={20}
           label={
-            <span style={{ fontSize: 11, color: '#eafbe8' }}>
+            <span style={{ fontSize: 11, color: "#eafbe8" }}>
               {hero.maxHealth} / {hero.maxHealth}
             </span>
           }
@@ -57,7 +59,7 @@ export function PortraitPanel({ hero }: PortraitPanelProps) {
           variant="mana"
           height={20}
           label={
-            <span style={{ fontSize: 11, color: '#e6f0ff' }}>
+            <span style={{ fontSize: 11, color: "#e6f0ff" }}>
               {hero.maxMana} / {hero.maxMana}
             </span>
           }

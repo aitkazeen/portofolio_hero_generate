@@ -1,7 +1,7 @@
-import type { ContactContent } from '../../../types/content';
-import styles from './ContactScreen.module.css';
-import { QuestLog } from './QuestLog';
-import { Sidebar } from './Sidebar';
+import type { ContactContent } from "../../../types/content";
+import styles from "./ContactScreen.module.css";
+import { QuestLog } from "./QuestLog";
+import { Sidebar } from "./Sidebar";
 
 interface ContactScreenProps {
   contact: ContactContent;

@@ -1,8 +1,8 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { HydratedDocument } from "mongoose";
 
 /// The single "business card" owner. The API is a monolith serving one profile.
-@Schema({ timestamps: true, collection: 'profiles' })
+@Schema({ timestamps: true, collection: "profiles" })
 export class Profile {
   @Prop({ required: true })
   fullName!: string;

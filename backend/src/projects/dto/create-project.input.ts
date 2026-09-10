@@ -1,6 +1,14 @@
-import { Field, InputType } from '@nestjs/graphql';
-import { IsArray, IsBoolean, IsEnum, IsNotEmpty, IsOptional, IsString, IsUrl } from 'class-validator';
-import { ProjectStatus } from '../../common/enums/project.enums';
+import { Field, InputType } from "@nestjs/graphql";
+import {
+  IsArray,
+  IsBoolean,
+  IsEnum,
+  IsNotEmpty,
+  IsOptional,
+  IsString,
+  IsUrl,
+} from "class-validator";
+import { ProjectStatus } from "../../common/enums/project.enums";
 
 @InputType()
 export class CreateProjectInput {

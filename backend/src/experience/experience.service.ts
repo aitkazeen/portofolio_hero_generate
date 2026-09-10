@@ -1,12 +1,15 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { Experience, ExperienceDocument } from './schemas/experience.schema';
-import { CreateExperienceInput } from './dto/create-experience.input';
+import { Injectable, NotFoundException } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { Model } from "mongoose";
+import { Experience, ExperienceDocument } from "./schemas/experience.schema";
+import { CreateExperienceInput } from "./dto/create-experience.input";
 
 @Injectable()
 export class ExperienceService {
-  constructor(@InjectModel(Experience.name) private readonly experienceModel: Model<ExperienceDocument>) {}
+  constructor(
+    @InjectModel(Experience.name)
+    private readonly experienceModel: Model<ExperienceDocument>,
+  ) {}
 
   findAll() {
     return this.experienceModel.find().sort({ startDate: -1 });

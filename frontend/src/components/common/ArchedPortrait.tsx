@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
-import styles from './ArchedPortrait.module.css';
+import type { ReactNode } from "react";
+import styles from "./ArchedPortrait.module.css";
 
 interface ArchedPortraitProps {
   /** Outer frame width (px number, or a CSS width string like "100%"); height follows the 3:4 slot aspect ratio. */
@@ -42,7 +42,7 @@ export function ArchedPortrait({
         borderWidth,
         padding,
         borderRadius: radius,
-        boxShadow: glow ? '0 0 16px rgba(198, 154, 52, 0.35)' : undefined,
+        boxShadow: glow ? "0 0 16px rgba(198, 154, 52, 0.35)" : undefined,
       }}
     >
       <div
@@ -51,12 +51,15 @@ export function ArchedPortrait({
           borderRadius: innerRadius,
           boxShadow: `inset 0 0 ${innerGlowBlur}px rgba(0, 0, 0, 0.85)`,
           backgroundImage: imageUrl ? `url(${imageUrl})` : undefined,
-          backgroundSize: imageUrl ? 'cover' : undefined,
-          backgroundPosition: imageUrl ? 'center' : undefined,
+          backgroundSize: imageUrl ? "cover" : undefined,
+          backgroundPosition: imageUrl ? "center" : undefined,
         }}
       >
         {!imageUrl && caption && (
-          <div className={styles.caption} style={{ fontSize: captionSize, letterSpacing: '.12em' }}>
+          <div
+            className={styles.caption}
+            style={{ fontSize: captionSize, letterSpacing: ".12em" }}
+          >
             {caption}
           </div>
         )}

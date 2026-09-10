@@ -1,8 +1,8 @@
-import { ArchedPortrait } from '../../common/ArchedPortrait';
-import { CornerRivets } from '../../common/CornerRivets';
-import { StatBar } from '../../common/StatBar';
-import type { SkillsContent } from '../../../types/content';
-import styles from './AttributePanel.module.css';
+import { ArchedPortrait } from "../../common/ArchedPortrait";
+import { CornerRivets } from "../../common/CornerRivets";
+import { StatBar } from "../../common/StatBar";
+import type { SkillsContent } from "../../../types/content";
+import styles from "./AttributePanel.module.css";
 
 interface AttributePanelProps {
   fullName: string;
@@ -11,7 +11,12 @@ interface AttributePanelProps {
   skills: SkillsContent;
 }
 
-export function AttributePanel({ fullName, title, level, skills }: AttributePanelProps) {
+export function AttributePanel({
+  fullName,
+  title,
+  level,
+  skills,
+}: AttributePanelProps) {
   return (
     <div className={styles.panel}>
       <CornerRivets size={7} inset={5} variant="bronze" />
@@ -37,9 +42,16 @@ export function AttributePanel({ fullName, title, level, skills }: AttributePane
                 Level {level} — {skills.years} yrs
               </div>
               <div className={styles.xpBar}>
-                <StatBar pct={skills.xpPct} variant="xp" height={12} outline="idle" />
+                <StatBar
+                  pct={skills.xpPct}
+                  variant="xp"
+                  height={12}
+                  outline="idle"
+                />
               </div>
-              <div className={styles.xpCaption}>EXPERIENCE — {skills.xpPct}% TO NEXT TIER</div>
+              <div className={styles.xpCaption}>
+                EXPERIENCE — {skills.xpPct}% TO NEXT TIER
+              </div>
             </div>
           </div>
 
@@ -54,7 +66,9 @@ export function AttributePanel({ fullName, title, level, skills }: AttributePane
         </div>
 
         <div className={styles.trackB}>
-          <div className={styles.sectionLabel}>Attributes — skill categories</div>
+          <div className={styles.sectionLabel}>
+            Attributes — skill categories
+          </div>
           {skills.stats.map((stat) => (
             <div className={styles.statRow} key={stat.label}>
               <div className={styles.statHeader}>
@@ -63,7 +77,12 @@ export function AttributePanel({ fullName, title, level, skills }: AttributePane
               </div>
               <div className={styles.statAttr}>{stat.attribute}</div>
               <div className={styles.statBar}>
-                <StatBar pct={stat.pct} variant="stat" height={14} outline="idle" />
+                <StatBar
+                  pct={stat.pct}
+                  variant="stat"
+                  height={14}
+                  outline="idle"
+                />
               </div>
             </div>
           ))}

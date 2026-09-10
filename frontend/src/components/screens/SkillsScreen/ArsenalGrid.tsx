@@ -1,10 +1,10 @@
-import type { ArsenalSection, Faction } from '../../../types/content';
-import styles from './ArsenalGrid.module.css';
+import type { ArsenalSection, Faction } from "../../../types/content";
+import styles from "./ArsenalGrid.module.css";
 
 const FACTION_CLASS: Record<Faction, string> = {
-  nightelf: styles['marker--nightelf'],
-  alliance: styles['marker--alliance'],
-  horde: styles['marker--horde'],
+  nightelf: styles["marker--nightelf"],
+  alliance: styles["marker--alliance"],
+  horde: styles["marker--horde"],
 };
 
 interface ArsenalGridProps {
@@ -25,7 +25,9 @@ export function ArsenalGrid({ sections, note, footnote }: ArsenalGridProps) {
         {sections.map((section) => (
           <div className={styles.section} key={section.faction}>
             <div className={styles.sectionHeader}>
-              <div className={`${styles.marker} ${FACTION_CLASS[section.faction]}`} />
+              <div
+                className={`${styles.marker} ${FACTION_CLASS[section.faction]}`}
+              />
               <div className={styles.sectionTitle}>{section.title}</div>
               <div className={styles.sectionNote}>{section.note}</div>
             </div>
@@ -34,8 +36,15 @@ export function ArsenalGrid({ sections, note, footnote }: ArsenalGridProps) {
                 const Icon = tile.icon;
                 return (
                   <div className={styles.tile} key={tile.label}>
-                    <div className={`${styles.iconSlot} ${FACTION_CLASS[section.faction]}`}>
-                      <Icon className={styles.iconGlyph} {...(tile.iconBold ? { stroke: 'currentColor', strokeWidth: 1.1 } : {})} />
+                    <div
+                      className={`${styles.iconSlot} ${FACTION_CLASS[section.faction]}`}
+                    >
+                      <Icon
+                        className={styles.iconGlyph}
+                        {...(tile.iconBold
+                          ? { stroke: "currentColor", strokeWidth: 1.1 }
+                          : {})}
+                      />
                     </div>
                     <div className={styles.tileLabel}>{tile.label}</div>
                   </div>

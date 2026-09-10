@@ -1,6 +1,6 @@
-import { ArchedPortrait } from '../common/ArchedPortrait';
-import { StatBar } from '../common/StatBar';
-import styles from './Nameplate.module.css';
+import { ArchedPortrait } from "../common/ArchedPortrait";
+import { StatBar } from "../common/StatBar";
+import styles from "./Nameplate.module.css";
 
 interface NameplateProps {
   fullName: string;
@@ -11,7 +11,13 @@ interface NameplateProps {
 }
 
 /** Bottom status bar's selected-unit nameplate: avatar, name, level, HP/MP bars. */
-export function Nameplate({ fullName, level, screenLabel, healthPct, manaPct }: NameplateProps) {
+export function Nameplate({
+  fullName,
+  level,
+  screenLabel,
+  healthPct,
+  manaPct,
+}: NameplateProps) {
   return (
     <div className={styles.plate}>
       <ArchedPortrait

@@ -1,7 +1,7 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { HydratedDocument } from "mongoose";
 
-@Schema({ collection: 'experience' })
+@Schema({ collection: "experience" })
 export class Experience {
   @Prop({ required: true })
   role!: string;

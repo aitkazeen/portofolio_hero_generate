@@ -1,8 +1,8 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
-import { ProjectStatus } from '../../common/enums/project.enums';
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { HydratedDocument } from "mongoose";
+import { ProjectStatus } from "../../common/enums/project.enums";
 
-@Schema({ collection: 'projects' })
+@Schema({ collection: "projects" })
 export class Project {
   @Prop({ required: true })
   title!: string;

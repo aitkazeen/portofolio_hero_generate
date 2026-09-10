@@ -1,5 +1,5 @@
-import type { ResourceStat } from '../../types/content';
-import styles from './TopResourceBar.module.css';
+import type { ResourceStat } from "../../types/content";
+import styles from "./TopResourceBar.module.css";
 
 interface TopResourceBarProps {
   resources: ResourceStat[];

@@ -1,4 +1,4 @@
-import styles from './StatusMessage.module.css';
+import styles from "./StatusMessage.module.css";
 
 interface StatusMessageProps {
   eyebrow: string;
@@ -8,7 +8,12 @@ interface StatusMessageProps {
 }
 
 /** Centered loading/error message shown in the content region while the API request is in flight or has failed. */
-export function StatusMessage({ eyebrow, title, detail, onRetry }: StatusMessageProps) {
+export function StatusMessage({
+  eyebrow,
+  title,
+  detail,
+  onRetry,
+}: StatusMessageProps) {
   return (
     <div className={styles.wrap}>
       <div className={styles.eyebrow}>{eyebrow}</div>

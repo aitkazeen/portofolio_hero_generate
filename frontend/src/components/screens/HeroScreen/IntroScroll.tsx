@@ -1,6 +1,6 @@
-import { CornerRivets } from '../../common/CornerRivets';
-import type { HeroContent } from '../../../types/content';
-import styles from './IntroScroll.module.css';
+import { CornerRivets } from "../../common/CornerRivets";
+import type { HeroContent } from "../../../types/content";
+import styles from "./IntroScroll.module.css";
 
 interface IntroScrollProps {
   hero: HeroContent;

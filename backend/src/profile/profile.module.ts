@@ -1,12 +1,12 @@
-import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { ProfileResolver } from './profile.resolver';
-import { ProfileService } from './profile.service';
-import { Profile, ProfileSchema } from './schemas/profile.schema';
-import { ProfileLink, ProfileLinkSchema } from './schemas/profile-link.schema';
-import { SkillsModule } from '../skills/skills.module';
-import { ProjectsModule } from '../projects/projects.module';
-import { ExperienceModule } from '../experience/experience.module';
+import { Module } from "@nestjs/common";
+import { MongooseModule } from "@nestjs/mongoose";
+import { ProfileResolver } from "./profile.resolver";
+import { ProfileService } from "./profile.service";
+import { Profile, ProfileSchema } from "./schemas/profile.schema";
+import { ProfileLink, ProfileLinkSchema } from "./schemas/profile-link.schema";
+import { SkillsModule } from "../skills/skills.module";
+import { ProjectsModule } from "../projects/projects.module";
+import { ExperienceModule } from "../experience/experience.module";
 
 @Module({
   imports: [

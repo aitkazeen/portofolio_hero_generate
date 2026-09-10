@@ -1,6 +1,6 @@
-import { Field, InputType } from '@nestjs/graphql';
-import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
-import { SkillCategory, SkillLevel } from '../../common/enums/skill.enums';
+import { Field, InputType } from "@nestjs/graphql";
+import { IsEnum, IsNotEmpty, IsString } from "class-validator";
+import { SkillCategory, SkillLevel } from "../../common/enums/skill.enums";
 
 @InputType()
 export class CreateSkillInput {

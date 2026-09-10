@@ -1,5 +1,5 @@
-import type { ReactNode } from 'react';
-import styles from './HudFrame.module.css';
+import type { ReactNode } from "react";
+import styles from "./HudFrame.module.css";
 
 interface HudFrameProps {
   children: ReactNode;

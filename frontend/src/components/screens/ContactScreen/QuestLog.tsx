@@ -1,6 +1,6 @@
-import { CornerRivets } from '../../common/CornerRivets';
-import type { ContactContent } from '../../../types/content';
-import styles from './QuestLog.module.css';
+import { CornerRivets } from "../../common/CornerRivets";
+import type { ContactContent } from "../../../types/content";
+import styles from "./QuestLog.module.css";
 
 interface QuestLogProps {
   contact: ContactContent;
@@ -19,8 +19,8 @@ export function QuestLog({ contact }: QuestLogProps) {
             className={styles.channel}
             key={channel.label}
             href={channel.href}
-            target={channel.kind === 'link' ? '_blank' : undefined}
-            rel={channel.kind === 'link' ? 'noreferrer' : undefined}
+            target={channel.kind === "link" ? "_blank" : undefined}
+            rel={channel.kind === "link" ? "noreferrer" : undefined}
           >
             <div className={styles.channelIcon} />
             <div className={styles.channelText}>

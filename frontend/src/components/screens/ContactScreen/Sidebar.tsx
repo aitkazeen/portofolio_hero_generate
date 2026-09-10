@@ -1,6 +1,6 @@
-import { StatBar } from '../../common/StatBar';
-import type { ContactContent } from '../../../types/content';
-import styles from './Sidebar.module.css';
+import { StatBar } from "../../common/StatBar";
+import type { ContactContent } from "../../../types/content";
+import styles from "./Sidebar.module.css";
 
 interface SidebarProps {
   contact: ContactContent;
@@ -18,7 +18,12 @@ export function Sidebar({ contact }: SidebarProps) {
               <div className={styles.rowBody}>
                 <div className={styles.rowLabel}>{item.label}</div>
                 <div className={styles.rowBar}>
-                  <StatBar pct={item.pct} variant="stat" height={8} outline="idle" />
+                  <StatBar
+                    pct={item.pct}
+                    variant="stat"
+                    height={8}
+                    outline="idle"
+                  />
                 </div>
               </div>
             </div>

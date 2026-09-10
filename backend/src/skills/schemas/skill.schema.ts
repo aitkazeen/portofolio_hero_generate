@@ -1,8 +1,8 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
-import { SkillCategory, SkillLevel } from '../../common/enums/skill.enums';
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { HydratedDocument } from "mongoose";
+import { SkillCategory, SkillLevel } from "../../common/enums/skill.enums";
 
-@Schema({ collection: 'skills' })
+@Schema({ collection: "skills" })
 export class Skill {
   @Prop({ required: true })
   name!: string;

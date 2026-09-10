@@ -1,4 +1,4 @@
-import styles from './Minimap.module.css';
+import styles from "./Minimap.module.css";
 
 export function Minimap() {
   return (

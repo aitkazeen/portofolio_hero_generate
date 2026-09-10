@@ -1,8 +1,9 @@
 /** Shapes returned by the backend's GraphQL API — see backend/prisma/schema.prisma. */
 
-export type SkillCategoryDto = 'LANGUAGE' | 'RUNTIME' | 'FRAMEWORK' | 'DATABASE' | 'DEVOPS' | 'TOOLING';
-export type SkillLevelDto = 'FAMILIAR' | 'PROFICIENT' | 'EXPERT';
-export type ProjectStatusDto = 'ONGOING' | 'COMPLETED' | 'ARCHIVED';
+export type SkillCategoryDto =
+  "LANGUAGE" | "RUNTIME" | "FRAMEWORK" | "DATABASE" | "DEVOPS" | "TOOLING";
+export type SkillLevelDto = "FAMILIAR" | "PROFICIENT" | "EXPERT";
+export type ProjectStatusDto = "ONGOING" | "COMPLETED" | "ARCHIVED";
 
 export interface ProfileLinkDto {
   label: string;

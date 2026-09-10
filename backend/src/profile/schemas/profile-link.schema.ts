@@ -1,7 +1,7 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { HydratedDocument } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { HydratedDocument } from "mongoose";
 
-@Schema({ collection: 'profile_links' })
+@Schema({ collection: "profile_links" })
 export class ProfileLink {
   @Prop({ required: true })
   label!: string;

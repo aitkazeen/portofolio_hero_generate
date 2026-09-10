@@ -1,5 +1,5 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { ProjectStatus } from '../../common/enums/project.enums';
+import { Field, ID, ObjectType } from "@nestjs/graphql";
+import { ProjectStatus } from "../../common/enums/project.enums";
 
 @ObjectType()
 export class Project {

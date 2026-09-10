@@ -1,10 +1,10 @@
-import type { Screen } from '../../types/content';
-import styles from './TabBar.module.css';
+import type { Screen } from "../../types/content";
+import styles from "./TabBar.module.css";
 
 const TABS: { id: Screen; label: string; hotkey: string }[] = [
-  { id: 'hero', label: 'Hero', hotkey: 'H' },
-  { id: 'skills', label: 'Skills & Stack', hotkey: 'S' },
-  { id: 'contact', label: 'Contact', hotkey: 'C' },
+  { id: "hero", label: "Hero", hotkey: "H" },
+  { id: "skills", label: "Skills & Stack", hotkey: "S" },
+  { id: "contact", label: "Contact", hotkey: "C" },
 ];
 
 interface TabBarProps {
@@ -23,10 +23,12 @@ export function TabBar({ activeScreen, onSelect }: TabBarProps) {
               type="button"
               role="tab"
               aria-selected={isActive}
-              className={`${styles.tab} ${isActive ? styles['tab--active'] : styles['tab--idle']}`}
+              className={`${styles.tab} ${isActive ? styles["tab--active"] : styles["tab--idle"]}`}
               onClick={() => onSelect(tab.id)}
             >
-              <span className={`${styles.label} ${isActive ? styles['label--active'] : styles['label--idle']}`}>
+              <span
+                className={`${styles.label} ${isActive ? styles["label--active"] : styles["label--idle"]}`}
+              >
                 {tab.label}
               </span>
             </button>
