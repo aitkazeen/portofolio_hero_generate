@@ -74,6 +74,10 @@
   box-shadow: var(--glow-gold-sm);
 }
 
+.entry[role='button'] {
+  cursor: pointer;
+}
+
 .numeral {
   width: 40px;
   height: 40px;

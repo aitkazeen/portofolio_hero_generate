@@ -1,9 +1,9 @@
-import type { IconType } from 'react-icons';
+import type { IconType } from "react-icons";
 
-export type Screen = 'hero' | 'skills' | 'contact';
+export type Screen = "hero" | "skills" | "contact";
 
 /** The Arsenal's three tech-stack groupings, per the Lordaeron HUD design handoff. */
-export type Faction = 'nightelf' | 'alliance' | 'horde';
+export type Faction = "nightelf" | "alliance" | "horde";
 
 export interface ResourceStat {
   label: string;
@@ -26,6 +26,8 @@ export interface LogEntry {
   scope: string;
   /** If set, the row links out (e.g. a project's repo/live URL). */
   href?: string;
+  /** Full CV description for this entry — `result` above is just its first sentence. */
+  detail?: string;
 }
 
 export interface SkillStat {
@@ -55,7 +57,7 @@ export interface HeroFact {
   value: string;
 }
 
-export type ContactChannelKind = 'email' | 'link' | 'phone';
+export type ContactChannelKind = "email" | "link" | "phone";
 
 export interface ContactChannel {
   label: string;

@@ -60,6 +60,7 @@ function mapExperience(entries: ExperienceDto[]): LogEntry[] {
     stack: entry.company.toUpperCase(),
     progressPct: Math.round((durations[index] / maxDuration) * 100),
     scope: deriveSeniority(entry.role),
+    detail: entry.description,
   }));
 }
 
