@@ -11,9 +11,15 @@ interface ArsenalGridProps {
   sections: ArsenalSection[];
   note: string;
   footnote: string;
+  selectedCategory: string | null;
 }
 
-export function ArsenalGrid({ sections, note, footnote }: ArsenalGridProps) {
+export function ArsenalGrid({
+  sections,
+  note,
+  footnote,
+  selectedCategory,
+}: ArsenalGridProps) {
   return (
     <div className={styles.panel}>
       <div className={styles.header}>
@@ -34,8 +40,12 @@ export function ArsenalGrid({ sections, note, footnote }: ArsenalGridProps) {
             <div className={styles.grid}>
               {section.tiles.map((tile) => {
                 const Icon = tile.icon;
+                const isHighlighted = tile.category === selectedCategory;
                 return (
-                  <div className={styles.tile} key={tile.label}>
+                  <div
+                    className={`${styles.tile} ${isHighlighted ? styles["tile--highlighted"] : ""}`}
+                    key={tile.label}
+                  >
                     <div
                       className={`${styles.iconSlot} ${FACTION_CLASS[section.faction]}`}
                     >

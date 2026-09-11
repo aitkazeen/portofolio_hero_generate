@@ -27,7 +27,7 @@ import { StorageModule } from "./storage/storage.module";
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), "src/schema.gql"),
       sortSchema: true,
-      playground: false,
+      playground: process.env.NODE_ENV !== "production",
       introspection: process.env.NODE_ENV !== "production",
       context: ({ req, res }: { req: unknown; res: unknown }) => ({
         req,

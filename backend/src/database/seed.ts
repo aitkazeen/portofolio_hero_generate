@@ -16,6 +16,13 @@ import { ProjectStatus } from "../common/enums/project.enums";
 dotenv.config();
 
 const CV_DIR = join(__dirname, "..", "..", "..", "cv");
+const AVATAR_DIR = join(__dirname, "..", "..", "..", "avatar");
+const AVATAR_MIME: Record<string, string> = {
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".png": "image/png",
+  ".webp": "image/webp",
+};
 
 const ProfileModel = mongoose.model("Profile", ProfileSchema);
 const ProfileLinkModel = mongoose.model("ProfileLink", ProfileLinkSchema);
@@ -28,23 +35,21 @@ const ContactMessageModel = mongoose.model(
 );
 
 /**
- * If a PDF sits in cv/, upload it to S3/MinIO and return its public URL for
- * Profile.resumeUrl. Requires S3_* env vars — see .env.example. Never throws for a
- * missing CV; that's the expected state until one is dropped in.
+ * Uploads a local file to S3/MinIO under `folder/`, returning its public URL for a
+ * Profile field. Requires S3_* env vars — see .env.example. Never throws for missing
+ * config; that's the expected state until MinIO is set up.
  */
-async function uploadResumeIfPresent(): Promise<string | undefined> {
-  if (!existsSync(CV_DIR)) return undefined;
-  const pdf = readdirSync(CV_DIR).find(
-    (f) => extname(f).toLowerCase() === ".pdf",
-  );
-  if (!pdf) return undefined;
-
+async function uploadIfConfigured(
+  filePath: string,
+  folder: string,
+  contentType: string,
+): Promise<string | undefined> {
   const bucket = process.env.S3_BUCKET;
   const endpoint = process.env.S3_ENDPOINT;
   const publicUrl = process.env.S3_PUBLIC_URL;
   if (!bucket || !endpoint || !publicUrl) {
     console.warn(
-      `Found ${pdf} but S3_* env vars are not set — skipping resume upload.`,
+      `Found ${filePath} but S3_* env vars are not set — skipping upload.`,
     );
     return undefined;
   }
@@ -59,25 +64,97 @@ async function uploadResumeIfPresent(): Promise<string | undefined> {
     },
   });
 
-  const key = `resumes/${randomUUID()}.pdf`;
+  const key = `${folder}/${randomUUID()}${extname(filePath).toLowerCase()}`;
   await client.send(
     new PutObjectCommand({
       Bucket: bucket,
       Key: key,
-      Body: readFileSync(join(CV_DIR, pdf)),
-      ContentType: "application/pdf",
+      Body: readFileSync(filePath),
+      ContentType: contentType,
     }),
   );
 
   const url = `${publicUrl.replace(/\/$/, "")}/${key}`;
-  console.log(`Uploaded ${pdf} -> ${url}`);
+  console.log(`Uploaded ${filePath} -> ${url}`);
+  return url;
+}
+
+/** If a PDF sits in cv/, upload it for Profile.resumeUrl. */
+async function uploadResumeIfPresent(): Promise<string | undefined> {
+  if (!existsSync(CV_DIR)) return undefined;
+  const pdf = readdirSync(CV_DIR).find(
+    (f) => extname(f).toLowerCase() === ".pdf",
+  );
+  if (!pdf) return undefined;
+  return uploadIfConfigured(join(CV_DIR, pdf), "resumes", "application/pdf");
+}
+
+/**
+ * If an image sits in avatar/, upload it through the API's own POST /uploads/avatars
+ * endpoint — the same one a real client would use — and return the MinIO URL it
+ * hands back for Profile.avatarUrl. Requires the API running (API_URL, defaults to
+ * http://localhost:<PORT>) and ADMIN_TOKEN set. Never throws for a missing avatar, a
+ * down API, or a rejected upload; that's the expected state until one is dropped in.
+ */
+async function uploadAvatarIfPresent(): Promise<string | undefined> {
+  if (!existsSync(AVATAR_DIR)) return undefined;
+  const file = readdirSync(AVATAR_DIR).find(
+    (f) => extname(f).toLowerCase() in AVATAR_MIME,
+  );
+  if (!file) return undefined;
+
+  const adminToken = process.env.ADMIN_TOKEN;
+  if (!adminToken) {
+    console.warn(
+      `Found ${file} but ADMIN_TOKEN is not set — skipping avatar upload.`,
+    );
+    return undefined;
+  }
+  const apiUrl =
+    process.env.API_URL ?? `http://localhost:${process.env.PORT ?? 3000}`;
+
+  const form = new FormData();
+  form.append(
+    "file",
+    new Blob([readFileSync(join(AVATAR_DIR, file))], {
+      type: AVATAR_MIME[extname(file).toLowerCase()],
+    }),
+    file,
+  );
+
+  let response: Response;
+  try {
+    response = await fetch(`${apiUrl}/uploads/avatars`, {
+      method: "POST",
+      headers: { Authorization: `Bearer ${adminToken}` },
+      body: form,
+    });
+  } catch {
+    console.warn(
+      `Found ${file} but could not reach the API at ${apiUrl} — skipping avatar upload.`,
+    );
+    return undefined;
+  }
+
+  if (!response.ok) {
+    console.warn(
+      `Avatar upload rejected (${response.status}): ${await response.text()}`,
+    );
+    return undefined;
+  }
+
+  const { url } = (await response.json()) as { url: string };
+  console.log(`Uploaded ${file} -> ${url}`);
   return url;
 }
 
 async function main() {
   await mongoose.connect(process.env.MONGODB_URI ?? "");
 
-  const resumeUrl = await uploadResumeIfPresent();
+  const [resumeUrl, avatarUrl] = await Promise.all([
+    uploadResumeIfPresent(),
+    uploadAvatarIfPresent(),
+  ]);
 
   await Promise.all([
     ContactMessageModel.deleteMany({}),
@@ -96,6 +173,7 @@ async function main() {
     phone: "+7 707 911 0441",
     location: "Astana, Kazakhstan",
     resumeUrl,
+    avatarUrl,
     languages: [
       "Russian (native)",
       "Kazakh (native)",

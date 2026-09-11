@@ -43,6 +43,9 @@ export interface ArsenalTile {
   faction: Faction;
   /** Adds a matching stroke on top of the fill for glyphs that read faint/thin at tile size. */
   iconBold: boolean;
+  /** Matches a SkillStat's `label` (e.g. "LANGUAGES") — lets the Attributes list
+   * highlight this tile when its category is selected. */
+  category: string;
 }
 
 export interface ArsenalSection {
@@ -74,6 +77,7 @@ export interface BuildQueueItem {
 export interface HeroContent {
   fullName: string;
   title: string;
+  avatarUrl?: string;
   level: number;
   healthPct: number;
   maxHealth: number;

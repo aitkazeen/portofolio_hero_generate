@@ -5,6 +5,7 @@ import styles from "./Nameplate.module.css";
 
 interface NameplateProps {
   fullName: string;
+  avatarUrl?: string;
   level: number;
   screenLabel: string;
   healthPct: number;
@@ -14,6 +15,7 @@ interface NameplateProps {
 /** Bottom status bar's selected-unit nameplate: avatar, name, level, HP/MP bars. */
 export function Nameplate({
   fullName,
+  avatarUrl,
   level,
   screenLabel,
   healthPct,
@@ -30,7 +32,7 @@ export function Nameplate({
         innerGlowBlur={20}
         captionSize={8}
         caption="AVATAR"
-        imageUrl={footieAvatar}
+        imageUrl={avatarUrl ?? footieAvatar}
       />
       <div className={styles.info}>
         <div className={styles.nameRow}>

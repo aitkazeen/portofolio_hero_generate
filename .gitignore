@@ -24,3 +24,7 @@ Thumbs.db
 # personal CV document — never commit the source file, only the derived seed data
 cv/*
 !cv/README.md
+
+# personal avatar photo — never commit the source file, only the derived seed data
+avatar/*
+!avatar/README.md

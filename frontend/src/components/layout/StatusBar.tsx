@@ -8,6 +8,7 @@ interface StatusBarProps {
   activeScreen: Screen;
   screenLabel: string;
   fullName: string;
+  avatarUrl?: string;
   level: number;
   healthPct: number;
   manaPct: number;
@@ -18,6 +19,7 @@ export function StatusBar({
   activeScreen,
   screenLabel,
   fullName,
+  avatarUrl,
   level,
   healthPct,
   manaPct,
@@ -28,6 +30,7 @@ export function StatusBar({
       <Minimap />
       <Nameplate
         fullName={fullName}
+        avatarUrl={avatarUrl}
         level={level}
         screenLabel={screenLabel}
         healthPct={healthPct}

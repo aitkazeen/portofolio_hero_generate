@@ -8,15 +8,21 @@ import styles from "./AttributePanel.module.css";
 interface AttributePanelProps {
   fullName: string;
   title: string;
+  avatarUrl?: string;
   level: number;
   skills: SkillsContent;
+  selectedCategory: string | null;
+  onSelectCategory: (category: string) => void;
 }
 
 export function AttributePanel({
   fullName,
   title,
+  avatarUrl,
   level,
   skills,
+  selectedCategory,
+  onSelectCategory,
 }: AttributePanelProps) {
   return (
     <div className={styles.panel}>
@@ -34,7 +40,7 @@ export function AttributePanel({
                 innerRadius="50% 50% 2px 2px / 30% 30% 2px 2px"
                 captionSize={9}
                 caption="PORTRAIT"
-                imageUrl={footieAvatar}
+                imageUrl={avatarUrl ?? footieAvatar}
               />
             </div>
             <div className={styles.identity}>
@@ -72,7 +78,12 @@ export function AttributePanel({
             Attributes — skill categories
           </div>
           {skills.stats.map((stat) => (
-            <div className={styles.statRow} key={stat.label}>
+            <button
+              type="button"
+              className={`${styles.statRow} ${selectedCategory === stat.label ? styles["statRow--active"] : ""}`}
+              key={stat.label}
+              onClick={() => onSelectCategory(stat.label)}
+            >
               <div className={styles.statHeader}>
                 <div className={styles.statLabel}>{stat.label}</div>
                 <div className={styles.statScore}>{stat.score}</div>
@@ -86,7 +97,7 @@ export function AttributePanel({
                   outline="idle"
                 />
               </div>
-            </div>
+            </button>
           ))}
         </div>
       </div>

@@ -69,6 +69,7 @@ export function App() {
           <SkillsScreen
             fullName={content.hero.fullName}
             title={content.hero.title}
+            avatarUrl={content.hero.avatarUrl}
             level={content.hero.level}
             skills={content.skills}
           />
@@ -80,6 +81,7 @@ export function App() {
         activeScreen={screen}
         screenLabel={screenLabel}
         fullName={content.hero.fullName}
+        avatarUrl={content.hero.avatarUrl}
         level={content.hero.level}
         healthPct={content.hero.healthPct}
         manaPct={content.hero.manaPct}

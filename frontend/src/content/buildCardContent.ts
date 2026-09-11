@@ -181,7 +181,7 @@ function mapSkillStats(skills: SkillDto[]): SkillStat[] {
         list.reduce(
           (sum, skill) => sum + (LEVEL_WEIGHT[skill.level] ?? 0.5),
           0,
-        ) / list.length;
+        ) / 10;
       return {
         label: CATEGORY_META[category].label,
         attribute: CATEGORY_META[category].attribute,
@@ -212,7 +212,13 @@ function mapArsenal(skills: SkillDto[]): ArsenalSection[] {
         note: FACTION_META[faction].note,
         tiles: list.map((skill) => {
           const { icon, bold } = resolveSkillVisual(skill.name, skill.category);
-          return { label: skill.name, icon, faction, iconBold: bold };
+          return {
+            label: skill.name,
+            icon,
+            faction,
+            iconBold: bold,
+            category: CATEGORY_META[skill.category].label,
+          };
         }),
       };
     },
@@ -292,6 +298,7 @@ export function buildCardContent(profile: ProfileDto): CardContent {
     hero: {
       fullName: profile.fullName,
       title: profile.title,
+      avatarUrl: profile.avatarUrl ?? undefined,
       level: years,
       healthPct: 100,
       maxHealth: 650,

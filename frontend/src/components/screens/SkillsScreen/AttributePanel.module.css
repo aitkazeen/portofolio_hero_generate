@@ -116,6 +116,24 @@
   color: var(--text-tertiary-3);
 }
 
+.statRow {
+  all: unset;
+  display: block;
+  cursor: pointer;
+  padding: var(--space-3);
+  border: 1px solid transparent;
+}
+
+.statRow:hover {
+  border-color: var(--idle-border-2);
+}
+
+.statRow--active {
+  border-color: var(--gold);
+  background: rgba(255, 204, 51, 0.08);
+  box-shadow: var(--glow-gold-sm);
+}
+
 .statHeader {
   display: flex;
   align-items: baseline;

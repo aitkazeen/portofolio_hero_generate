@@ -32,15 +32,12 @@ export function PortraitPanel({ hero }: PortraitPanelProps) {
         innerGlowBlur={40}
         glow
         captionSize={11}
-        imageUrl={footieAvatar}
+        imageUrl={hero.avatarUrl ?? footieAvatar}
         caption={
           <>
             hero portrait
             <br />
             512 × 680
-            <div style={{ marginTop: 6, color: "#5f6d8c" }}>
-              drop avatar here
-            </div>
           </>
         }
       />
